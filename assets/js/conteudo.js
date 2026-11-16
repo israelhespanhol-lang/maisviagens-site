@@ -51,7 +51,7 @@ window.MAIS_VIAGENS = {
     {
       nome: "Paraguai — Fronteira de Negócios",
       foto: "assets/img/caravana-paraguai.jpg",
-      link: "https://grupos.ultravel.com.br/e/fronteira-de-negocios-edicao-paraguai",
+      link: "https://fronteira.grupos-ultravel.com/",
       tipo: "ultravel",
       data: "",                       // opcional. Ex.: "Março 2027" (aparece como selo no cartão)
       botao: "Acessar a página da imersão no Paraguai"
