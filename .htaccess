@@ -1,0 +1,25 @@
+# MAIS VIAGENS - URLs amigaveis - HostGator / Apache 2.4
+# Instalar este .htaccess na MESMA pasta que index.html.
+# Requer Apache mod_rewrite habilitado (padrao em hospedagens cPanel).
+# Nao altera chamadas de API, assets ou o painel administrativo.
+
+DirectoryIndex index.html index.php
+RewriteEngine On
+
+# Quem abrir /index.html sera redirecionado para /.
+# THE_REQUEST impede redirecionamento infinito quando o Apache abre o index internamente.
+RewriteCond %{THE_REQUEST} \s/+index\.html(?:[\s?]) [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Links antigos continuam validos, mas vao para a URL limpa.
+RewriteCond %{THE_REQUEST} \s/+[^?\s]+\.html(?:[\s?]) [NC]
+RewriteRule ^(viagens-personalizadas|caravanas|promocoes|orlando|aluguel-de-carros|contato|privacidade)\.html$ /$1 [R=301,L,NE,NC]
+
+# Normalizar a barra final: /promocoes/ -> /promocoes
+RewriteRule ^(viagens-personalizadas|caravanas|promocoes|orlando|aluguel-de-carros|contato|privacidade)/$ /$1 [R=301,L,NE,NC]
+
+# Servir os arquivos HTML sem exibir a extensao na barra do navegador.
+RewriteRule ^(viagens-personalizadas|caravanas|promocoes|orlando|aluguel-de-carros|contato|privacidade)$ $1.html [L,NC]
+
+# HTTPS: habilitar apenas depois que o certificado SSL do dominio estiver valido.
+# Prefira ativar "Force HTTPS Redirect" no cPanel, sem duplicar regras aqui.
